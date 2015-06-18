@@ -1,6 +1,6 @@
 <h2>Meetup info page:</h2>
 
-<h1><%= @title %></h1>
+<div class="meetup-title-show"><h1><%= @title %></h1></div>
 <br>
 <h3>Location: <%= @meetup.location %></h3>
 <h3>Description: <%= @meetup.description %></h3>
@@ -23,8 +23,10 @@ __________________________________________________
   <dt><strong><%= comment.title %></strong></dt>
   <br>
     <dd><%= comment.body %></dd>
-    <dd>posted by: <%= comment.user.username %></dd>
+    <dd>posted by: <%= comment.user.username %> <img src="<%= comment.user.avatar_url %>" height="60" width="60"></dd>
     <dd>posted on: <%= comment.updated_at %></dd>
+    <dd>posted on: <%= comment.user.avatar_url %></dd>
+
     <br>
     __________________________________________________
     <br>

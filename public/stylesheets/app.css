@@ -92,6 +92,14 @@ background-color: black;
       0px 0px 25px lightblue}
 }
 
+.meetup-title-show {
+  color:#fff;
+  font-weight:700;
+  text-transform:uppercase;
+  animation:blur 3s ease-out infinite;
+  text-shadow:0px 0px 5px yellow,
+      0px 0px 7px gold;
+}
 
 
 .meetup-info {
