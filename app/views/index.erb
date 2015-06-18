@@ -1,0 +1,17 @@
+<h1><%= @title %></h1>
+
+<h2>All meetups</h2>
+
+<dl>
+
+<% Meetup.order(:name).each do |meetup| %>
+  <dt><a href="/meetups/<%= meetup.id %>"><strong><%= meetup.name %></strong></a></dt>
+  <br>
+  <dd>Location: <%= meetup.location %> </dd>
+  <dd>Description: <%= meetup.description %> </dd>
+  <br>
+<% end %>
+
+<h2><a href="/new">Make a new Meetup!</a></h2>
+
+</dl>
