@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :meetup_joins
   has_many :meetups, through: :meetup_joins
+  has_many :comments
+
 
   validates :provider, presence: true
   validates :uid, presence: true

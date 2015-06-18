@@ -13,12 +13,50 @@
 <% end %>
 </ul>
 
-
+<h3>Comments: </h3>
+<br>
+__________________________________________________
+<br>
+<br>
+<dl>
+<% @meetup.comments.order(:updated_at).reverse_order.each do |comment| %>
+  <dt><strong><%= comment.title %></strong></dt>
+  <br>
+    <dd><%= comment.body %></dd>
+    <dd>posted by: <%= comment.user.username %></dd>
+    <dd>posted on: <%= comment.updated_at %></dd>
+    <br>
+    __________________________________________________
+    <br>
+    <br>
+<% end %>
+</dl>
 
 <% if MeetupJoin.exists?(user: current_user, meetup: @meetup) %>
+<br>
+<br>
+<h5>Leave a comment: </h5>
+  <form action="/postcomment/<%= @meetup.id %>" method="post">
+    <label for="title">Comment title:</label>
+    <input type="text" id="title" name="title" placeholder= "[optional]">
+    <br>
+    <br>
+    <label for="body">Comment body:</label>
+    <textarea id="body" name="body" placeholder= "Write comment here..." ></textarea>
+    <br>
+    <br>
+    <button id="comment-button">Submit Comment</button>
+    <br>
+    <br>
+  </form>
+
+
+<br>
   <form id='' action="/leave/<%= @meetup.id %>" method="POST">
     <button id="leave-button">Leave Meetup!</button>
   </form>
+
+
 <% else %>
   <form id='' action="/join/<%= @meetup.id %>" method="POST">
     <button id="join-button">Join Meetup!</button>

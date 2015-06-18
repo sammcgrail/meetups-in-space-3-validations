@@ -90,3 +90,18 @@ post '/leave/:meetup_id' do
   flash[:notice] = "You have left #{meetup.name}!"
   redirect '/'
 end
+
+post '/postcomment/:meetup_id' do
+  meetup =  Meetup.find(params[:meetup_id])
+  unless params[:body] == nil || params[:body] == ""
+    Comment.create!(title: params[:title], body: params[:body],
+                    user_id: current_user.id,
+                    meetup_id: params[:meetup_id]
+                    )
+    flash[:notice] = "You have left a comment on #{meetup.name}!"
+    redirect "/meetups/#{params[:meetup_id]}"
+  else
+    flash[:notice] = "You need to have a body!"
+    redirect "/meetups/#{params[:meetup_id]}"
+  end
+end
