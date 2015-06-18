@@ -13,6 +13,14 @@
 <% end %>
 </ul>
 
-<form id='' action="/join/<%= @meetup.id %>" method="POST">
-  <button id="join-button">Join Meetup!</button>
-</form>
+
+
+<% if MeetupJoin.exists?(user: current_user, meetup: @meetup) %>
+  <form id='' action="/leave/<%= @meetup.id %>" method="POST">
+    <button id="leave-button">Leave Meetup!</button>
+  </form>
+<% else %>
+  <form id='' action="/join/<%= @meetup.id %>" method="POST">
+    <button id="join-button">Join Meetup!</button>
+  </form>
+<% end %>

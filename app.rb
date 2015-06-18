@@ -83,3 +83,10 @@ post '/join/:meetup_id' do
     redirect "/meetups/#{params[:meetup_id]}"
   end
 end
+
+post '/leave/:meetup_id' do
+  meetup =  Meetup.find(params[:meetup_id])
+  MeetupJoin.where(user: current_user, meetup: meetup).destroy_all
+  flash[:notice] = "You have left #{meetup.name}!"
+  redirect '/'
+end
